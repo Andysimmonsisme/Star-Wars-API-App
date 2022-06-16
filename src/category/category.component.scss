@@ -1,0 +1,13 @@
+$primary: #ffe300;
+$tertiary: #c2ab00;
+
+div {
+  float: left;
+  padding: 15px;
+  background-color: $primary;
+}
+
+div:hover {
+  background-color: $tertiary;
+  cursor: pointer;
+}

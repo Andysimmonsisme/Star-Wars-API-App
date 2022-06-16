@@ -1,0 +1,17 @@
+.header-outer,
+.row-outer {
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+
+.header-inner {
+  width: fit-content;
+  margin: auto;
+}
+
+.header-col,
+.col {
+  float: left;
+  padding: 15px;
+  font-size: 12px;
+}

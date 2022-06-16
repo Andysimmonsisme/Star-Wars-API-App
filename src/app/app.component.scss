@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&family=Poller+One&family=Roboto:wght@300&display=swap');
+
+$primary: #ffe300;
+$secondary: #000;
+$tertiary: #c2ab00;
+$starWarsFont: 'Poller One', cursive;
+$font-size: 16px;
+
+#header {
+  background-color: $secondary;
+  color: $primary;
+  font-family: $starWarsFont;
+  font-size: 50px;
+  text-align: center;
+  padding: 25px;
+}
+
+.category-container {
+  background-color: $primary;
+}
+
+.category-container-inner {
+  margin: auto;
+  width: fit-content;
+}

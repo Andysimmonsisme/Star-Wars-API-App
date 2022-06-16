@@ -1,0 +1,12 @@
+<div id="header">Star Wars API App</div>
+<div class="category-container">
+  <div class="category-container-inner">
+    <category
+      *ngFor="let category of categories"
+      [name]="category"
+      (sendNavItemVal)="receiveNavItemVal($event)"
+    ></category>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<category-details [activeCategory]="activeCategory"></category-details>
