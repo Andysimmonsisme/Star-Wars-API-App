@@ -22,8 +22,9 @@
     <h3>Details</h3>
     <hr />
     <ul>
-      <li *ngFor="let row of selectedRow | keyvalue">
-        <strong>{{ convertToTitleCase(row.key) }}</strong> :
+      <li *ngFor="let row of selectedRow | keyvalue" *ngIf="row.value">
+        <strong>{{ convertToTitleCase(row.key) }}</strong
+        >:
         {{ row.value | isNumber }}
       </li>
     </ul>
