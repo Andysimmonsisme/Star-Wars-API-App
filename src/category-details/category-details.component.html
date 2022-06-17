@@ -7,8 +7,8 @@
       <div class="clearFix"></div>
     </div>
   </div>
-  <div class="row-outer" *ngFor="let row of rows">
-    <div class="row-inner">
+  <div class="row-outer" *ngFor="let row of rows; index as i">
+    <div class="row-inner" (click)="showAllCategoryDetails(i)">
       <div class="col" *ngFor="let item of row | keyvalue">
         {{ item.value | isNumber }}
       </div>
@@ -17,14 +17,13 @@
 </div>
 <div id="modal-bg"></div>
 <div id="modal">
-  <button class="btn close" (click)="closeModal()">X</button>
+  <button class="close" (click)="closeModal()">X</button>
   <div class="modal-text">
     <h3>Details</h3>
     <hr />
-    <br />
     <ul>
-      <li *ngFor="let data of allData | keyvalue">
-        {{ data.key }} : {{ data.value }}
+      <li *ngFor="let row of selectedRow | keyvalue">
+        {{ row.key }} : {{ row.value | isNumber }}
       </li>
     </ul>
   </div>

@@ -26,7 +26,8 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
 
   headerRow: Array<string> = [];
   rows: Array<Object> = [];
-  allData: Array<Object> = [];
+  allData: Object = {};
+  selectedRow: any = {};
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
 
@@ -83,6 +84,21 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
     });
   }
 
+  getRowData(index: number) {
+    return this.allData[index];
+  }
+
+  showAllCategoryDetails(rowIndex) {
+    this.selectedRow = this.getRowData(rowIndex);
+    console.log(this.selectedRow);
+    this.showModal();
+  }
+
+  showModal() {
+    document.getElementById('modal-bg').classList.remove('hide');
+    document.getElementById('modal').classList.remove('hide');
+  }
+
   closeModal() {
     document.getElementById('modal-bg').classList.add('hide');
     document.getElementById('modal').classList.add('hide');
@@ -90,5 +106,6 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.selectPlanets();
+    this.closeModal();
   }
 }

@@ -83,7 +83,7 @@ li {
   background-color: #fff;
   width: 75%;
   left: 12.5%;
-  padding: 15px;
+  padding: 40px 15px 15px 15px;
   top: 50px;
   opacity: 1;
   margin: auto;
@@ -95,9 +95,10 @@ li {
   position: relative;
   width: fit-content;
   margin: auto;
-  max-height: 350px;
+  max-height: 500px;
   overflow: scroll;
   margin-bottom: 35px;
+  max-width: 100%;
 }
 
 button.close {
@@ -106,7 +107,8 @@ button.close {
   left: 5px;
   background-color: $primary;
   border: none;
-  padding: 8px;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 button.close:hover {
@@ -126,6 +128,7 @@ button.close:active {
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
