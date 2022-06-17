@@ -1,5 +1,9 @@
+$primary: #ffe300;
+$secondary: #000;
+$tertiary: #c2ab00;
+
 %grid-row-border {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid $secondary;
 }
 
 %grid-row-even {
@@ -9,6 +13,18 @@
 %grid-row-even-hover {
   background-color: #ddd;
   cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
 }
 
 .grid {
@@ -68,6 +84,7 @@
   width: 75%;
   left: 12.5%;
   padding: 15px;
+  top: 50px;
   opacity: 1;
   margin: auto;
   position: fixed;
@@ -83,6 +100,40 @@
   margin-bottom: 35px;
 }
 
+button.close {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: $primary;
+  border: none;
+  padding: 8px;
+}
+
+button.close:hover {
+  cursor: pointer;
+  background-color: $tertiary;
+  border: none;
+}
+
+button.close:active {
+  color: $secondary;
+  background-color: $tertiary;
+  border-color: $secondary;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(214, 214, 214, 0.5);
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
 @media only screen and (max-width: 480px) {
   .grid {
     min-width: 250px;
@@ -92,7 +143,7 @@
 
   .header-outer,
   .row-outer {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgb(196, 186, 186);
   }
 
   .row-outer:nth-child(even) {
