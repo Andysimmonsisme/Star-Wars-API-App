@@ -23,7 +23,8 @@
     <hr />
     <ul>
       <li *ngFor="let row of selectedRow | keyvalue">
-        {{ row.key }} : {{ row.value | isNumber }}
+        <strong>{{ convertToTitleCase(row.key) }}</strong> :
+        {{ row.value | isNumber }}
       </li>
     </ul>
   </div>

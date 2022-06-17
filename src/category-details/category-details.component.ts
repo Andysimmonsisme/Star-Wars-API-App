@@ -32,12 +32,11 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
   @Input() mainFields: Array<string>;
 
   convertToTitleCase(val) {
-    return val
-      .split(/(?=[_])/)
-      .map((p) => {
-        return (p[0].toUpperCase() + p.slice(1)).replace(/(_)/, '');
-      })
-      .join(' ');
+    let frags = val.split('_');
+    for (let i = 0; i < frags.length; i++) {
+      frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+    }
+    return frags.join(' ');
   }
 
   selectPlanets() {
