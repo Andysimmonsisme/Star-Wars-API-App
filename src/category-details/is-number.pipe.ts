@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IsNumberPipe implements PipeTransform {
   transform(value: any, args?: any): any {
-    if (isNaN(Number(value))) return 123;
-    else return value;
+    let ret = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (!isNaN(Number(value))) return ret;
+    else return ret;
   }
 }

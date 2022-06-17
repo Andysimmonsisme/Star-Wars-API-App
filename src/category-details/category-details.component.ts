@@ -26,6 +26,7 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
 
   headerRow: Array<string> = [];
   rows: Array<Object> = [];
+  allData: Array<Object> = [];
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
 
@@ -40,16 +41,22 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
 
   selectPlanets() {
     let planets = this.dataService.getPlanets();
+    this.allData = planets.results;
+    console.log(this.allData);
     this.populateCategoryDetails(planets);
   }
 
   selectCharacters() {
     let characters = this.dataService.getCharacters();
+    this.allData = characters.results;
+    console.log(this.allData);
     this.populateCategoryDetails(characters);
   }
 
   selectStarships() {
     let starships = this.dataService.getStarships();
+    this.allData = starships.results;
+    console.log(this.allData);
     this.populateCategoryDetails(starships);
   }
 
@@ -59,11 +66,11 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
     category.results.forEach((obj) => {
       let numKeys = Object.keys(obj).length;
       let resetHeader = numKeys > maxCols;
+      let cols = [];
       if (resetHeader) {
         maxCols = numKeys;
         this.headerRow = [];
       }
-      let cols = [];
       Object.keys(obj).forEach((key) => {
         //mainFields contains key
         if (this.mainFields.indexOf(key) > -1) {
@@ -74,6 +81,11 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
       });
       this.rows.push(cols);
     });
+  }
+
+  closeModal() {
+    document.getElementById('modal-bg').classList.add('hide');
+    document.getElementById('modal').classList.add('hide');
   }
 
   ngOnInit() {

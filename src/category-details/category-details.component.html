@@ -10,8 +10,22 @@
   <div class="row-outer" *ngFor="let row of rows">
     <div class="row-inner">
       <div class="col" *ngFor="let item of row | keyvalue">
-        {{ item.value }}
+        {{ item.value | isNumber }}
       </div>
     </div>
+  </div>
+</div>
+<div id="modal-bg"></div>
+<div id="modal">
+  <button class="btn close" (click)="closeModal()">X</button>
+  <div class="modal-text">
+    <div><strong>Details</strong></div>
+    <hr />
+    <br />
+    <ul>
+      <li *ngFor="let data of allData | keyvalue">
+        {{ data.key }} : {{ data.value }}
+      </li>
+    </ul>
   </div>
 </div>

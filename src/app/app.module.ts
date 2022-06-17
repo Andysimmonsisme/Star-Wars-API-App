@@ -6,11 +6,18 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from '../category/category.component';
 import { CategoryDetailsComponent } from '../category-details/category-details.component';
 
+import { IsNumberPipe } from '../category-details/is-number.pipe';
+
 import { DataService } from '../data/data.service';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
-  declarations: [AppComponent, CategoryComponent, CategoryDetailsComponent],
+  declarations: [
+    AppComponent,
+    CategoryComponent,
+    CategoryDetailsComponent,
+    IsNumberPipe,
+  ],
   providers: [DataService],
   bootstrap: [AppComponent],
 })
