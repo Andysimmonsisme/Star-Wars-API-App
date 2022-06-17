@@ -1,17 +1,87 @@
-.header-outer,
-.row-outer {
-  width: 100%;
+%grid-row-border {
   border-bottom: 1px solid #000;
 }
 
-.header-inner {
+%grid-row-even {
+  background-color: #eee;
+}
+
+%grid-row-even-hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.grid {
+  white-space: nowrap;
+  word-break: keep-all;
+  padding: 15px;
+}
+
+.header-inner,
+.row-inner {
   width: fit-content;
   margin: auto;
+  @extend %grid-row-border;
+}
+
+.row-outer:nth-child(even) {
+  .row-inner {
+    @extend %grid-row-even;
+  }
+}
+
+.row-inner:hover,
+.row-outer:nth-child(even) .row-inner:hover {
+  @extend %grid-row-even-hover;
+}
+
+.row-outer:last-child,
+.row-outer:last-child .row-inner {
+  border-bottom: none;
 }
 
 .header-col,
 .col {
-  float: left;
+  display: inline-block;
   padding: 15px;
-  font-size: 12px;
+  font-size: 14px;
+  width: 150px;
+  white-space: normal;
+}
+
+.header-col {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 480px) {
+  .grid {
+    min-width: 250px;
+    overflow: scroll;
+    padding: 0px;
+  }
+
+  .header-outer,
+  .row-outer {
+    border-bottom: 1px solid #000;
+  }
+
+  .row-outer:nth-child(even) {
+    background-color: #eee;
+  }
+
+  .row-outer:hover,
+  .row-outer:nth-child(even):hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+
+  .header-inner,
+  .row-inner {
+    border-bottom: none;
+  }
+
+  .header-col,
+  .col {
+    width: 75px;
+  }
 }

@@ -1,14 +1,17 @@
-<div class="header-outer">
-  <div class="header-inner">
-    <div class="header-col" *ngFor="let col of headerRow">
-      <strong>{{ col }}</strong>
+<div class="grid">
+  <div class="header-outer">
+    <div class="header-inner">
+      <div class="header-col" *ngFor="let col of headerRow">
+        <strong>{{ col }}</strong>
+      </div>
+      <div class="clearFix"></div>
     </div>
-    <div class="clearFix"></div>
   </div>
-</div>
-<div class="row-outer" *ngFor="let row of rows">
-  <div class="row-inner">
-    <div class="col" *ngFor="let item of row | keyvalue">{{ item.value }}</div>
-    <div class="clearFix"></div>
+  <div class="row-outer" *ngFor="let row of rows">
+    <div class="row-inner">
+      <div class="col" *ngFor="let item of row | keyvalue">
+        {{ item.value }}
+      </div>
+    </div>
   </div>
 </div>

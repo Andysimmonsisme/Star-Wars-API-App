@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { planets } from './models/planets';
 import { characters } from './models/characters';
+import { starships } from './models/starships';
 import { catchError } from 'rxjs/operators';
 import { query } from '@angular/animations';
 
@@ -15,6 +16,7 @@ export class DataService {
   //will replace below vars with actual data from API later
   private planets = planets;
   private characters = characters;
+  private starships = starships;
 
   getPlanets() {
     return this.planets;
@@ -22,5 +24,9 @@ export class DataService {
 
   getCharacters() {
     return this.characters;
+  }
+
+  getStarships() {
+    return this.starships;
   }
 }

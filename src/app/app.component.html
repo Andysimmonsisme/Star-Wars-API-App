@@ -3,10 +3,13 @@
   <div class="category-container-inner">
     <category
       *ngFor="let category of categories"
-      [name]="category"
+      [name]="category.name"
       (sendNavItemVal)="receiveNavItemVal($event)"
     ></category>
   </div>
   <div class="clearFix"></div>
 </div>
-<category-details [activeCategory]="activeCategory"></category-details>
+<category-details
+  [activeCategory]="activeCategory"
+  [mainFields]="mainFields"
+></category-details>

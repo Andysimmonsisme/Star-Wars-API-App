@@ -7,11 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
-  categories = ['Planets', 'Characters', 'Starships'];
-  activeCategory = 'planets';
+  categories = [
+    { name: 'Planets', mainFields: ['name', 'population', 'terrain'] },
+    { name: 'Characters', mainFields: ['name', 'gender', 'birth_year'] },
+    { name: 'Starships', mainFields: ['name', 'model', 'manufacturer'] },
+  ];
+  activeCategory: string = 'planets';
+  mainFields: Array<string> = this.categories[0].mainFields;
 
   receiveNavItemVal($event) {
     this.activeCategory = $event;
+    this.categories.forEach((category) => {
+      //get mainFields for active category
+      if (category.name.toLowerCase() === this.activeCategory)
+        this.mainFields = category.mainFields;
+    });
   }
   ngOnInit() {}
 }

@@ -20,12 +20,14 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
       let itemSelected = changes['activeCategory'].currentValue;
       if (itemSelected === 'planets') this.selectPlanets();
       else if (itemSelected === 'characters') this.selectCharacters();
+      else if (itemSelected === 'starships') this.selectStarships();
     }
   }
 
   headerRow: Array<string> = [];
   rows: Array<Object> = [];
   @Input() activeCategory: string;
+  @Input() mainFields: Array<string>;
 
   convertToTitleCase(val) {
     return val
@@ -46,6 +48,11 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
     this.populateCategoryDetails(characters);
   }
 
+  selectStarships() {
+    let starships = this.dataService.getStarships();
+    this.populateCategoryDetails(starships);
+  }
+
   populateCategoryDetails(category) {
     let maxCols = 0;
     this.rows = [];
@@ -58,15 +65,16 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
       }
       let cols = [];
       Object.keys(obj).forEach((key) => {
-        if (resetHeader) this.headerRow.push(this.convertToTitleCase(key));
+        //mainFields contains key
+        if (this.mainFields.indexOf(key) > -1) {
+          if (resetHeader) this.headerRow.push(this.convertToTitleCase(key));
 
-        cols.push(obj[key]);
+          cols.push(obj[key]);
+        }
       });
       this.rows.push(cols);
     });
   }
-
-  selectStarShips() {}
 
   ngOnInit() {
     this.selectPlanets();
