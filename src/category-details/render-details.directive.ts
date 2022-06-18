@@ -13,6 +13,17 @@ export class RenderDetailsDirective implements OnChanges {
   @Input() renderDetails;
   constructor(private el: ElementRef) {}
 
+  isValidHttpUrl(string) {
+    let url;
+    console.log(string);
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return string;
+    }
+    return '<a target="_blank" href="' + string + '">' + string + '</a>';
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['renderDetails'] && changes['renderDetails'].currentValue) {
       let value = changes['renderDetails'].currentValue;
@@ -20,9 +31,10 @@ export class RenderDetailsDirective implements OnChanges {
       if (!isNaN(Number(value))) this.el.nativeElement.innerHTML = ret;
       else if (Array.isArray(value)) {
         value.forEach((el) => {
-          this.el.nativeElement.innerHTML += '<br>' + el;
+          this.el.nativeElement.innerHTML +=
+            '<br>' + '<a target="_blank" href="' + el + '">' + el + '</a>';
         });
-      } else this.el.nativeElement.innerHTML = value;
+      } else this.el.nativeElement.innerHTML = this.isValidHttpUrl(value);
     }
   }
 }

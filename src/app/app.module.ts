@@ -10,8 +10,6 @@ import { DataService } from '../data/data.service';
 
 import { RenderDetailsDirective } from '../category-details/render-details.directive';
 
-import { FormatDetailsPipe } from '../category-details/format-details.pipe';
-
 @NgModule({
   imports: [BrowserModule, FormsModule],
   declarations: [
@@ -19,7 +17,6 @@ import { FormatDetailsPipe } from '../category-details/format-details.pipe';
     CategoryComponent,
     CategoryDetailsComponent,
     RenderDetailsDirective,
-    FormatDetailsPipe,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
