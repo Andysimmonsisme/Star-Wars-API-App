@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'isNumber',
+  name: 'formatDetails',
 })
-export class IsNumberPipe implements PipeTransform {
+export class FormatDetailsPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     let ret = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     if (!isNaN(Number(value))) return ret;
+    else if (Array.isArray(value)) return 'See more';
     else return ret;
   }
 }

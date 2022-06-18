@@ -125,6 +125,11 @@ button.close:active {
   box-shadow: 0 0 0 0.25rem rgba(214, 214, 214, 0.5);
 }
 
+.clickable {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;

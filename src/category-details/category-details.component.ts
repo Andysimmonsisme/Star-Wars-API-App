@@ -93,6 +93,10 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
     this.showModal();
   }
 
+  seeMore(row) {
+    if (Array.isArray(row.value)) alert(row.key + ':' + row.value);
+  }
+
   showModal() {
     document.getElementById('modal-bg').classList.remove('hide');
     document.getElementById('modal').classList.remove('hide');

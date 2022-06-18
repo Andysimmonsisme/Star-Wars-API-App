@@ -10,7 +10,7 @@
   <div class="row-outer" *ngFor="let row of rows; index as i">
     <div class="row-inner" (click)="showAllCategoryDetails(i)">
       <div class="col" *ngFor="let item of row | keyvalue">
-        {{ item.value | isNumber }}
+        {{ item.value | formatDetails }}
       </div>
     </div>
   </div>
@@ -22,10 +22,10 @@
     <h3>Details</h3>
     <hr />
     <ul>
-      <li *ngFor="let row of selectedRow | keyvalue" *ngIf="row.value">
+      <li *ngFor="let row of selectedRow | keyvalue">
         <strong>{{ convertToTitleCase(row.key) }}</strong
         >:
-        {{ row.value | isNumber }}
+        <span (click)="seeMore(row)" [renderDetails]="row.value"></span>
       </li>
     </ul>
   </div>

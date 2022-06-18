@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from '../category/category.component';
 import { CategoryDetailsComponent } from '../category-details/category-details.component';
 
-import { IsNumberPipe } from '../category-details/is-number.pipe';
-
 import { DataService } from '../data/data.service';
+
+import { RenderDetailsDirective } from '../category-details/render-details.directive';
+
+import { FormatDetailsPipe } from '../category-details/format-details.pipe';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
@@ -16,7 +18,8 @@ import { DataService } from '../data/data.service';
     AppComponent,
     CategoryComponent,
     CategoryDetailsComponent,
-    IsNumberPipe,
+    RenderDetailsDirective,
+    FormatDetailsPipe,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
