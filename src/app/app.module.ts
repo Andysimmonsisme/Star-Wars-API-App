@@ -10,6 +10,8 @@ import { DataService } from '../data/data.service';
 
 import { RenderDetailsDirective } from '../category-details/render-details.directive';
 
+import { IsNumberPipe } from '../category-details/is-number.pipe';
+
 @NgModule({
   imports: [BrowserModule, FormsModule],
   declarations: [
@@ -17,6 +19,7 @@ import { RenderDetailsDirective } from '../category-details/render-details.direc
     CategoryComponent,
     CategoryDetailsComponent,
     RenderDetailsDirective,
+    IsNumberPipe,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

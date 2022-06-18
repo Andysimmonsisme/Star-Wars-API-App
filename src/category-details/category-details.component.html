@@ -10,7 +10,7 @@
   <div class="row-outer" *ngFor="let row of rows; index as i">
     <div class="row-inner" (click)="showAllCategoryDetails(i)">
       <div class="col" *ngFor="let item of row | keyvalue">
-        {{ item.value }}
+        {{ item.value | isNumber }}
       </div>
     </div>
   </div>
