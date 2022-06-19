@@ -84,21 +84,22 @@ li {
   width: 75%;
   left: 12.5%;
   padding: 40px 15px 15px 15px;
-  top: 50px;
+  top: 10vh;
   opacity: 1;
   margin: auto;
   position: fixed;
   border-radius: 0.375rem;
+  max-height: 75vh;
 }
 
 .modal-text {
   position: relative;
   width: fit-content;
   margin: auto;
-  max-height: 500px;
   overflow: scroll;
   margin-bottom: 35px;
   max-width: 100%;
+  max-height: 70vh;
 }
 
 button.close {

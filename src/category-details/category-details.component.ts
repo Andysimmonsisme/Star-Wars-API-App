@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DataService } from '../data/data.service';
 
 @Component({
@@ -12,17 +6,16 @@ import { DataService } from '../data/data.service';
   templateUrl: './category-details.component.html',
   styleUrls: ['./category-details.component.scss'],
 })
-export class CategoryDetailsComponent implements OnInit, OnChanges {
+export class CategoryDetailsComponent implements OnChanges {
   constructor(private dataService: DataService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['activeCategory'] && changes['activeCategory'].currentValue) {
       let activeCategory = changes['activeCategory'].currentValue;
       let itemSelected = activeCategory;
-      this.headerRow = [
-        'Loading ' + this.convertToTitleCase(activeCategory) + '...',
-      ];
+      this.headerRow = [];
       this.rows = [];
+      this.loading = true;
       if (itemSelected === 'planets') this.selectPlanets();
       else if (itemSelected === 'characters') this.selectCharacters();
       else if (itemSelected === 'starships') this.selectStarships();
@@ -33,6 +26,8 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
   rows: Array<Object> = [];
   allData: Object = {};
   selectedRow: any = {};
+  showModal: boolean = false;
+  loading: boolean;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
 
@@ -89,30 +84,21 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
       });
       this.rows.push(cols);
     });
+    this.loading = false;
   }
 
   getRowData(index: number) {
-    return this.allData[index];
+    //remove key/value pairs with empty value
+    return Object.keys(this.allData[index])
+      .filter((key) => this.allData[index][key].length > 0)
+      .reduce((cur, key) => {
+        return Object.assign(cur, { [key]: this.allData[index][key] });
+      }, {});
   }
 
   showAllCategoryDetails(rowIndex) {
     this.selectedRow = this.getRowData(rowIndex);
     console.log(this.selectedRow);
-    this.showModal();
-  }
-
-  showModal() {
-    document.getElementById('modal-bg').classList.remove('hide');
-    document.getElementById('modal').classList.remove('hide');
-  }
-
-  closeModal() {
-    document.getElementById('modal-bg').classList.add('hide');
-    document.getElementById('modal').classList.add('hide');
-  }
-
-  ngOnInit() {
-    this.selectPlanets();
-    this.closeModal();
+    this.showModal = true;
   }
 }

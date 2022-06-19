@@ -15,18 +15,21 @@
     </div>
   </div>
 </div>
-<div id="modal-bg"></div>
-<div id="modal">
-  <button class="close" (click)="closeModal()">X</button>
+<div id="modal-bg" *ngIf="showModal || loading"></div>
+<div id="modal" *ngIf="showModal || loading">
+  <button class="close" (click)="showModal = false" *ngIf="showModal">X</button>
   <div class="modal-text">
-    <h3>Details</h3>
-    <hr />
-    <ul>
-      <li *ngFor="let row of selectedRow | keyvalue">
-        <strong>{{ convertToTitleCase(row.key) }}</strong
-        >:
-        <span [renderDetails]="row.value"></span>
-      </li>
-    </ul>
+    <div *ngIf="loading">Loading {{ activeCategory }}...</div>
+    <div *ngIf="showModal">
+      <h3>Details</h3>
+      <hr />
+      <ul>
+        <li *ngFor="let row of selectedRow | keyvalue">
+          <strong>{{ convertToTitleCase(row.key) }}</strong
+          >:
+          <span [renderDetails]="row.value"></span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
