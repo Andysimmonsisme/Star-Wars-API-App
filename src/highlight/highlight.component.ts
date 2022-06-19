@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-highlight',
+  selector: 'highlight',
   templateUrl: './highlight.component.html',
   styleUrls: ['./highlight.component.scss'],
 })
