@@ -35,7 +35,15 @@
 <div id="modal" *ngIf="showModal || loading">
   <button class="close" (click)="showModal = false" *ngIf="showModal">X</button>
   <div class="modal-text">
-    <div *ngIf="loading">Loading {{ activeCategory }}...</div>
+    <div *ngIf="loading">
+      <div id="loadingGIF">
+        <img
+          width="50"
+          src="https://github.com/Andysimmonsisme/Star-Wars-API-App/blob/master/src/img/starwars-battleship-loader.gif?raw=true"
+        />
+      </div>
+      Loading {{ activeCategory }}...<br />
+    </div>
     <div *ngIf="showModal">
       <h3>Details</h3>
       <hr />

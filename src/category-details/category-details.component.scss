@@ -102,6 +102,11 @@ li {
   max-height: 70vh;
 }
 
+#loadingGIF {
+  margin: auto;
+  width: fit-content;
+}
+
 button {
   background-color: $primary;
   border: none;
