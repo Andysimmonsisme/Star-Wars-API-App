@@ -11,11 +11,7 @@ export class CategoryDetailsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['activeCategory'] && changes['activeCategory'].currentValue) {
-      let activeCategory = changes['activeCategory'].currentValue;
-      let itemSelected = activeCategory;
-      this.headerRow = [];
-      this.rows = [];
-      this.loading = true;
+      let itemSelected = changes['activeCategory'].currentValue;
       if (itemSelected === 'planets') this.selectCategory('planets', '');
       else if (itemSelected === 'characters') this.selectCategory('people', '');
       else if (itemSelected === 'starships')
@@ -42,18 +38,17 @@ export class CategoryDetailsComponent implements OnChanges {
     return frags.join(' ');
   }
 
-  handleReceivedDetails(data) {
-    console.log(data);
-    this.lastPage = data.lastPage;
-    this.nextPage = data.nextPage;
-    this.allData = data.results;
-    console.log(this.allData);
-    this.populateCategoryDetails(data.results);
-  }
-
   selectCategory(category, url) {
-    this.dataService.getCategory(this.activeCategory, url).then((data: any) => {
-      this.handleReceivedDetails(data);
+    this.headerRow = [];
+    this.rows = [];
+    this.loading = true;
+    this.dataService.getCategory(category, url).then((data: any) => {
+      console.log(data);
+      this.lastPage = data.lastPage;
+      this.nextPage = data.nextPage;
+      this.allData = data.results;
+      console.log(this.allData);
+      this.populateCategoryDetails(data.results);
     });
   }
 
@@ -89,7 +84,10 @@ export class CategoryDetailsComponent implements OnChanges {
   }
 
   goToNextPage() {
-    this.selectCategory(this.activeCategory.replace('characters', 'people'), this.nextPage);
+    this.selectCategory(
+      this.activeCategory.replace('characters', 'people'),
+      this.nextPage
+    );
   }
 
   getRowData(index: number) {

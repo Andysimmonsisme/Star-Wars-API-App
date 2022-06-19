@@ -22,7 +22,7 @@ export class DataService {
   private starships = starships;
 
   doHTTPReq(category, url) {
-    if (!url || url !== '') url = this.baseUrl + '/' + category;
+    if (!url || url === '') url = this.baseUrl + '/' + category;
     return this.http
       .get(url, {
         observe: 'response',
