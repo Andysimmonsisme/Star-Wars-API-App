@@ -21,18 +21,19 @@ export class DataService {
   private characters = characters;
   private starships = starships;
 
-  doHTTPReq(category) {
+  doHTTPReq(category, url) {
+    if (!url || url !== '') url = this.baseUrl + '/' + category;
     return this.http
-      .get(this.baseUrl + '/' + category, {
+      .get(url, {
         observe: 'response',
         responseType: 'json',
       })
       .pipe(catchError(null));
   }
 
-  getData(category) {
+  getData(category, url) {
     return new Promise((resolve) => {
-      this.doHTTPReq(category).subscribe((resp) => {
+      this.doHTTPReq(category, url).subscribe((resp) => {
         // display its headers
         const keys = resp.headers.keys();
 
@@ -41,21 +42,17 @@ export class DataService {
         this.config = { ...resp.body! };
 
         this.config.results.forEach((item) => console.log('getData', item));
-
-        resolve(this.config.results);
+        console.log(this.config);
+        resolve({
+          lastPage: this.config.previous,
+          nextPage: this.config.next,
+          results: this.config.results,
+        });
       });
     });
   }
 
-  getPlanets() {
-    return this.getData('planets');
-  }
-
-  getCharacters() {
-    return this.getData('people');
-  }
-
-  getStarships() {
-    return this.getData('starships');
+  getCategory(category, url) {
+    return this.getData(category, url);
   }
 }

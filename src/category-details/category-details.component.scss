@@ -102,23 +102,36 @@ li {
   max-height: 70vh;
 }
 
-button.close {
-  position: absolute;
-  top: 5px;
-  left: 5px;
+button {
   background-color: $primary;
   border: none;
   padding: 10px;
   border-radius: 4px;
 }
 
-button.close:hover {
+#lastPageBtn {
+  float: left;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+#nextPageBtn {
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+.close {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+button:hover {
   cursor: pointer;
   background-color: $tertiary;
   border: none;
 }
 
-button.close:active {
+button:active {
   color: $secondary;
   background-color: $tertiary;
   border-color: $secondary;

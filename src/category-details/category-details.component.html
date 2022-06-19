@@ -15,6 +15,22 @@
     </div>
   </div>
 </div>
+<button
+  id="lastPageBtn"
+  *ngIf="!loading"
+  [attr.disabled]="lastPage === null ? 'disabled' : null"
+  (click)="goToLastPage()"
+>
+  Last Page
+</button>
+<button
+  id="nextPageBtn"
+  *ngIf="!loading"
+  [attr.disabled]="nextPage === null ? 'disabled' : null"
+  (click)="goToNextPage()"
+>
+  Next Page
+</button>
 <div id="modal-bg" *ngIf="showModal || loading"></div>
 <div id="modal" *ngIf="showModal || loading">
   <button class="close" (click)="showModal = false" *ngIf="showModal">X</button>

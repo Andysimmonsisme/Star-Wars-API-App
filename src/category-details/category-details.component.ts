@@ -16,9 +16,10 @@ export class CategoryDetailsComponent implements OnChanges {
       this.headerRow = [];
       this.rows = [];
       this.loading = true;
-      if (itemSelected === 'planets') this.selectPlanets();
-      else if (itemSelected === 'characters') this.selectCharacters();
-      else if (itemSelected === 'starships') this.selectStarships();
+      if (itemSelected === 'planets') this.selectCategory('planets', '');
+      else if (itemSelected === 'characters') this.selectCategory('people', '');
+      else if (itemSelected === 'starships')
+        this.selectCategory('starships', '');
     }
   }
 
@@ -28,6 +29,8 @@ export class CategoryDetailsComponent implements OnChanges {
   selectedRow: any = {};
   showModal: boolean = false;
   loading: boolean;
+  lastPage: string = null;
+  nextPage: string = null;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
 
@@ -39,27 +42,18 @@ export class CategoryDetailsComponent implements OnChanges {
     return frags.join(' ');
   }
 
-  selectPlanets() {
-    this.dataService.getPlanets().then((planets) => {
-      this.allData = planets;
-      console.log(this.allData);
-      this.populateCategoryDetails(planets);
-    });
+  handleReceivedDetails(data) {
+    console.log(data);
+    this.lastPage = data.lastPage;
+    this.nextPage = data.nextPage;
+    this.allData = data.results;
+    console.log(this.allData);
+    this.populateCategoryDetails(data.results);
   }
 
-  selectCharacters() {
-    this.dataService.getCharacters().then((characters) => {
-      this.allData = characters;
-      console.log(this.allData);
-      this.populateCategoryDetails(characters);
-    });
-  }
-
-  selectStarships() {
-    this.dataService.getStarships().then((starships) => {
-      this.allData = starships;
-      console.log(this.allData);
-      this.populateCategoryDetails(starships);
+  selectCategory(category, url) {
+    this.dataService.getCategory(this.activeCategory, url).then((data: any) => {
+      this.handleReceivedDetails(data);
     });
   }
 
@@ -85,6 +79,17 @@ export class CategoryDetailsComponent implements OnChanges {
       this.rows.push(cols);
     });
     this.loading = false;
+  }
+
+  goToLastPage() {
+    this.selectCategory(
+      this.activeCategory.replace('characters', 'people'),
+      this.lastPage
+    );
+  }
+
+  goToNextPage() {
+    this.selectCategory(this.activeCategory.replace('characters', 'people'), this.nextPage);
   }
 
   getRowData(index: number) {
