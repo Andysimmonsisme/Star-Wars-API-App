@@ -17,7 +17,12 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['activeCategory'] && changes['activeCategory'].currentValue) {
-      let itemSelected = changes['activeCategory'].currentValue;
+      let activeCategory = changes['activeCategory'].currentValue;
+      let itemSelected = activeCategory;
+      this.headerRow = [
+        'Loading ' + this.convertToTitleCase(activeCategory) + '...',
+      ];
+      this.rows = [];
       if (itemSelected === 'planets') this.selectPlanets();
       else if (itemSelected === 'characters') this.selectCharacters();
       else if (itemSelected === 'starships') this.selectStarships();
@@ -40,30 +45,33 @@ export class CategoryDetailsComponent implements OnInit, OnChanges {
   }
 
   selectPlanets() {
-    let planets = this.dataService.getPlanets();
-    this.allData = planets.results;
-    console.log(this.allData);
-    this.populateCategoryDetails(planets);
+    this.dataService.getPlanets().then((planets) => {
+      this.allData = planets;
+      console.log(this.allData);
+      this.populateCategoryDetails(planets);
+    });
   }
 
   selectCharacters() {
-    let characters = this.dataService.getCharacters();
-    this.allData = characters.results;
-    console.log(this.allData);
-    this.populateCategoryDetails(characters);
+    this.dataService.getCharacters().then((characters) => {
+      this.allData = characters;
+      console.log(this.allData);
+      this.populateCategoryDetails(characters);
+    });
   }
 
   selectStarships() {
-    let starships = this.dataService.getStarships();
-    this.allData = starships.results;
-    console.log(this.allData);
-    this.populateCategoryDetails(starships);
+    this.dataService.getStarships().then((starships) => {
+      this.allData = starships;
+      console.log(this.allData);
+      this.populateCategoryDetails(starships);
+    });
   }
 
   populateCategoryDetails(category) {
     let maxCols = 0;
     this.rows = [];
-    category.results.forEach((obj) => {
+    category.forEach((obj) => {
       let numKeys = Object.keys(obj).length;
       let resetHeader = numKeys > maxCols;
       let cols = [];

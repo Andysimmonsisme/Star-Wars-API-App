@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CategoryComponent } from '../category/category.component';
@@ -13,7 +14,7 @@ import { RenderDetailsDirective } from '../category-details/render-details.direc
 import { IsNumberPipe } from '../category-details/is-number.pipe';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule],
   declarations: [
     AppComponent,
     CategoryComponent,
