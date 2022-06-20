@@ -34,9 +34,11 @@ export class CategoryDetailsComponent implements OnChanges {
   loading: boolean;
   lastPage: string = null;
   nextPage: string = null;
+  clearData: number;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
   @Output() sendCurrData = new EventEmitter<Array<Object>>();
+  @Output() sendClearData = new EventEmitter<number>();
 
   convertToTitleCase(val) {
     let frags = val.split('_');
@@ -50,6 +52,7 @@ export class CategoryDetailsComponent implements OnChanges {
     this.headerRow = [];
     this.rows = [];
     this.loading = true;
+    this.sendClearData.emit(this.clearData++);
     this.dataService.getCategory(category, url).then((data: any) => {
       console.log(data);
       this.lastPage = data.lastPage;

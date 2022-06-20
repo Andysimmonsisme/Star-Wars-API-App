@@ -18,9 +18,11 @@
 <highlight
   [activeCategory]="activeCategory"
   [currentData]="currentData"
+  [clearCurrData]="clearCurrData"
 ></highlight>
 <category-details
   [activeCategory]="activeCategory"
   [mainFields]="mainFields"
   (sendCurrData)="receiveCurrData($event)"
+  (sendClearData)="receiveClearData($event)"
 ></category-details>

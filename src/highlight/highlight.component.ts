@@ -21,6 +21,9 @@ export class HighlightComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['clearCurrData']) {
+      alert();
+    }
     if (changes['currentData'] && changes['currentData'].currentValue) {
       if (this.activeCategory === 'planets') {
         this.title = '5 Largest Planets';
@@ -50,6 +53,7 @@ export class HighlightComponent implements OnInit, OnChanges {
   headerRow: Array<string>;
   @Input() activeCategory: string;
   @Input() currentData: Array<any>;
+  @Input() clearCurrData: number;
 
   getHighlights(sort, sortCol, numItems, filter) {
     let minMaxItem = this.currentData
