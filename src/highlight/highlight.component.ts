@@ -21,10 +21,11 @@ export class HighlightComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['clearCurrData']) {
-      alert();
+    if (changes['activeCategory']) {
+      this.hide = true;
     }
     if (changes['currentData'] && changes['currentData'].currentValue) {
+      this.hide = false;
       if (this.activeCategory === 'planets') {
         this.title = '5 Largest Planets';
         this.headerRow = ['Name', 'Diameter'];
@@ -51,6 +52,7 @@ export class HighlightComponent implements OnInit, OnChanges {
 
   title: string;
   headerRow: Array<string>;
+  hide: boolean = false;
   @Input() activeCategory: string;
   @Input() currentData: Array<any>;
   @Input() clearCurrData: number;

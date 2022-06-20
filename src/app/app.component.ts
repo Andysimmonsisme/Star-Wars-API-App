@@ -15,7 +15,7 @@ export class AppComponent {
   activeCategory: string = 'planets';
   mainFields: Array<string> = this.categories[0].mainFields;
   currentData: Array<Object>;
-  clearCurrData: number;
+  clearCurrData: any;
 
   receiveNavItemVal($event) {
     this.activeCategory = $event;
