@@ -37,8 +37,9 @@ export class HighlightComponent implements OnInit, OnChanges {
         this.currentData.forEach((row) => {
           if (row.crew.includes('-')) {
             let minAndMax = row.crew.split('-');
-            row.crew = (minAndMax[0] + minAndMax[1]) / 2;
+            row.crew = Number((minAndMax[0] + minAndMax[1]) / 2);
           }
+          if (isNaN(row.crew)) row.crew = row.crew.replace(/,/g, '');
         });
         this.getHighlights(SORT.ASC, 'crew', 5, null);
       }
@@ -51,7 +52,7 @@ export class HighlightComponent implements OnInit, OnChanges {
   @Input() currentData: Array<any>;
 
   getHighlights(sort, sortCol, numItems, filter) {
-    let minItem = this.currentData
+    let minMaxItem = this.currentData
       .map((x) => {
         let filterItem = false;
         if (filter)
@@ -66,7 +67,7 @@ export class HighlightComponent implements OnInit, OnChanges {
       .sort((a, b) => {
         return sort === SORT.ASC ? a - b : b - a;
       })
-      .slice(numItems - 1, numItems); //fifth element of arr in desc order
+      .slice(numItems - 1, numItems); //nth element of arr in sort order
     let topItems = [];
 
     //iterate through rows
@@ -81,7 +82,7 @@ export class HighlightComponent implements OnInit, OnChanges {
         });
       if (sort === SORT.ASC) {
         //sort column is within range of number of items
-        if (Number(val) <= Number(minItem) && !filterItem) {
+        if (Number(val) <= Number(minMaxItem) && !filterItem) {
           let obj = {};
           this.headerRow.forEach((key) => {
             obj[key.toLowerCase()] = row[key.toLowerCase()];
@@ -90,7 +91,7 @@ export class HighlightComponent implements OnInit, OnChanges {
         }
       } else {
         //sort column is within range of number of items
-        if (Number(val) >= Number(minItem) && !filterItem) {
+        if (Number(val) >= Number(minMaxItem) && !filterItem) {
           let obj = {};
           this.headerRow.forEach((key) => {
             obj[key.toLowerCase()] = row[key.toLowerCase()];
