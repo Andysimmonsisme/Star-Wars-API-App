@@ -44,6 +44,21 @@ h3 {
   width: fit-content;
 }
 
+#lastPageBtn {
+  position: absolute;
+  left: 0px;
+  margin: 15px 0 5px 15px;
+}
+#nextPageBtn {
+  position: absolute;
+  right: 0px;
+  margin: 15px 15px 5px 0;
+}
+
+#spaceAfterBtns {
+  height: 30px;
+}
+
 button {
   background-color: $primary;
   border: none;
@@ -51,16 +66,6 @@ button {
   border-radius: 4px;
 }
 
-#lastPageBtn {
-  float: left;
-  margin-left: 15px;
-  margin-bottom: 5px;
-}
-#nextPageBtn {
-  float: right;
-  margin-right: 15px;
-  margin-bottom: 5px;
-}
 .close {
   position: absolute;
   top: 5px;
@@ -99,34 +104,7 @@ button:active {
 }
 
 @media only screen and (max-width: 480px) {
-  .grid {
-    min-width: 250px;
-    overflow: scroll;
-    padding: 0px;
-  }
-
-  .header-outer,
-  .row-outer {
-    border-bottom: 1px solid rgb(196, 186, 186);
-  }
-
-  .row-outer:nth-child(even) {
-    background-color: #eee;
-  }
-
-  .row-outer:hover,
-  .row-outer:nth-child(even):hover {
-    background-color: #ddd;
-    cursor: pointer;
-  }
-
-  .header-inner,
-  .row-inner {
-    border-bottom: none;
-  }
-
-  .header-col,
-  .col {
-    width: 75px;
+  #spaceAfterBtns {
+    height: 0px;
   }
 }
