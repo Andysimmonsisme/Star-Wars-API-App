@@ -31,7 +31,7 @@ export class CategoryDetailsComponent implements OnChanges {
 
   headerRow: Array<string> = [];
   rows: Array<Object> = [];
-  allData: Object = {};
+  allData: Array<Object> = [];
   selectedRow: any = {};
   showModal: boolean = false;
   loading: boolean;
@@ -123,11 +123,12 @@ export class CategoryDetailsComponent implements OnChanges {
   }
 
   getDetailsByName(name: string) {
-    let index;
-    for (let i = 0; i < this.rows.length; i++) {
+    let index = -1;
+    for (let i = 0; i < this.allData.length; i++) {
+      console.log(name, this.allData[i]['name'].toLowerCase());
       if (this.allData[i]['name'].toLowerCase() === name) index = i;
     }
-    if (index) this.showAllDetails(index);
+    if (index > -1) this.showAllDetails(index);
   }
 
   sendNewPageFunc() {
