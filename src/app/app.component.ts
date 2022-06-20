@@ -15,7 +15,7 @@ export class AppComponent {
   activeCategory: string = 'planets';
   mainFields: Array<string> = this.categories[0].mainFields;
   currentData: Array<Object>;
-  clearCurrData: any;
+  newPage: number;
 
   receiveNavItemVal($event) {
     this.activeCategory = $event;
@@ -30,8 +30,8 @@ export class AppComponent {
     this.currentData = $event;
   }
 
-  receiveClearData($event) {
-    this.clearCurrData = $event;
+  receiveNewPage($event) {
+    this.newPage = $event;
   }
 
   ngOnInit() {}

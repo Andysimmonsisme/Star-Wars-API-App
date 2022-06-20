@@ -34,11 +34,11 @@ export class CategoryDetailsComponent implements OnChanges {
   loading: boolean;
   lastPage: string = null;
   nextPage: string = null;
-  clearData: number;
+  newPage: number = 0;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
   @Output() sendCurrData = new EventEmitter<Array<Object>>();
-  @Output() sendClearData = new EventEmitter<any>();
+  @Output() sendNewPage = new EventEmitter<number>();
 
   convertToTitleCase(val) {
     let frags = val.split('_');
@@ -52,7 +52,6 @@ export class CategoryDetailsComponent implements OnChanges {
     this.headerRow = [];
     this.rows = [];
     this.loading = true;
-    this.sendClearData.emit(this.clearData);
     this.dataService.getCategory(category, url).then((data: any) => {
       console.log(data);
       this.lastPage = data.lastPage;
@@ -89,6 +88,7 @@ export class CategoryDetailsComponent implements OnChanges {
   }
 
   goToLastPage() {
+    this.sendNewPageFunc();
     this.selectCategory(
       this.activeCategory.replace('characters', 'people'),
       this.lastPage
@@ -96,6 +96,7 @@ export class CategoryDetailsComponent implements OnChanges {
   }
 
   goToNextPage() {
+    this.sendNewPageFunc();
     this.selectCategory(
       this.activeCategory.replace('characters', 'people'),
       this.nextPage
@@ -115,5 +116,9 @@ export class CategoryDetailsComponent implements OnChanges {
     this.selectedRow = this.getRowData(rowIndex);
     console.log(this.selectedRow);
     this.showModal = true;
+  }
+
+  sendNewPageFunc() {
+    this.sendNewPage.emit(this.newPage++);
   }
 }
