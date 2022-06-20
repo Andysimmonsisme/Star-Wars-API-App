@@ -16,6 +16,7 @@ export class AppComponent {
   mainFields: Array<string> = this.categories[0].mainFields;
   currentData: Array<Object>;
   newPage: number;
+  clickedHighlightName: string;
 
   receiveNavItemVal($event) {
     this.activeCategory = $event;
@@ -28,6 +29,10 @@ export class AppComponent {
 
   receiveCurrData($event) {
     this.currentData = $event;
+  }
+
+  receiveName($event) {
+    this.clickedHighlightName = $event;
   }
 
   receiveNewPage($event) {

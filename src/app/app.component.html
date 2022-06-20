@@ -19,10 +19,12 @@
   [activeCategory]="activeCategory"
   [currentData]="currentData"
   [newPage]="newPage"
+  (sendName)="receiveName($event)"
 ></highlight>
 <category-details
   [activeCategory]="activeCategory"
   [mainFields]="mainFields"
   (sendCurrData)="receiveCurrData($event)"
   (sendNewPage)="receiveNewPage($event)"
+  [highlightName]="clickedHighlightName"
 ></category-details>

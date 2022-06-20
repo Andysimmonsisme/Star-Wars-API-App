@@ -1,8 +1,10 @@
 import { KeyValue } from '@angular/common';
 import {
   Component,
+  EventEmitter,
   OnInit,
   Input,
+  Output,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
@@ -54,6 +56,7 @@ export class HighlightComponent implements OnInit, OnChanges {
   @Input() activeCategory: string;
   @Input() currentData: Array<any>;
   @Input() newPage: number;
+  @Output() sendName = new EventEmitter<string>();
 
   getHighlights(sort, sortCol, numItems, filter) {
     let minMaxItem = this.currentData
@@ -110,6 +113,10 @@ export class HighlightComponent implements OnInit, OnChanges {
       let d = isNaN(b[sortCol]) ? 0 : b[sortCol];
       return sort === SORT.ASC ? c - d : d - c;
     });
+  }
+
+  selectRow(index) {
+    this.sendName.emit(this.currentData[index].name.toLowerCase());
   }
 
   // Preserve original property order

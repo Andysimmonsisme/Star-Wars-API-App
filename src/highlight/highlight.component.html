@@ -9,7 +9,11 @@
         <div class="clearFix"></div>
       </div>
     </div>
-    <div class="row-outer" *ngFor="let row of currentData">
+    <div
+      class="row-outer"
+      *ngFor="let row of currentData; index as i"
+      (click)="selectRow(i)"
+    >
       <div class="row-inner">
         <div class="col" *ngFor="let col of row | keyvalue: originalOrder">
           {{ col.value | isNumber }}

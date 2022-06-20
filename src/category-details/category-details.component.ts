@@ -24,6 +24,9 @@ export class CategoryDetailsComponent implements OnChanges {
       else if (itemSelected === 'starships')
         this.selectCategory('starships', '');
     }
+    if (changes['highlightName']) {
+      this.getDetailsByName(this.highlightName);
+    }
   }
 
   headerRow: Array<string> = [];
@@ -37,6 +40,7 @@ export class CategoryDetailsComponent implements OnChanges {
   newPage: number = 0;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
+  @Input() highlightName: string;
   @Output() sendCurrData = new EventEmitter<Array<Object>>();
   @Output() sendNewPage = new EventEmitter<number>();
 
@@ -112,10 +116,18 @@ export class CategoryDetailsComponent implements OnChanges {
       }, {});
   }
 
-  showAllCategoryDetails(rowIndex) {
+  showAllDetails(rowIndex) {
     this.selectedRow = this.getRowData(rowIndex);
     console.log(this.selectedRow);
     this.showModal = true;
+  }
+
+  getDetailsByName(name: string) {
+    let index;
+    for (let i = 0; i < this.rows.length; i++) {
+      if (this.allData[i]['name'].toLowerCase() === name) index = i;
+    }
+    if (index) this.showAllDetails(index);
   }
 
   sendNewPageFunc() {
