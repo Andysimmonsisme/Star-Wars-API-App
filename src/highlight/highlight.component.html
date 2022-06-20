@@ -1,3 +1,23 @@
-<p>
-highlight works!
-</p>
+<div
+  id="highlight"
+  *ngIf="currentData && currentData.length > 0"
+>
+  <h3>{{ title }}</h3>
+  <div class="grid">
+    <div class="header-outer">
+      <div class="header-inner">
+        <div class="header-col" *ngFor="let col of headerRow">
+          <strong>{{ col }}</strong>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+    </div>
+    <div class="row-outer" *ngFor="let row of currentData">
+      <div class="row-inner">
+        <div class="col" *ngFor="let col of row | keyvalue: originalOrder">
+          {{ col.value | isNumber }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

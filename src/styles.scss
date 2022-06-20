@@ -1,15 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda&family=Poller+One&family=Roboto:wght@300&display=swap');
 $primary-font: 'Roboto', sans-serif;
+$secondary: #000;
+
+%grid-row-border {
+  border-bottom: 1px solid $secondary;
+}
+
+%grid-row-even {
+  background-color: #eee;
+}
+
+%grid-row-even-hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
 
 body {
   margin: 0px;
   font-family: $primary-font;
 }
 
-.clearFix {
-  clear: both;
+ul {
+  padding: 0;
 }
 
-.hide {
-  display: none !important;
+li {
+  list-style-type: none;
+}
+
+.grid {
+  white-space: nowrap;
+  word-break: keep-all;
+  padding: 15px;
+}
+
+.header-inner,
+.row-inner {
+  width: fit-content;
+  margin: auto;
+  @extend %grid-row-border;
+}
+
+.row-outer:nth-child(even) {
+  .row-inner {
+    @extend %grid-row-even;
+  }
+}
+
+.row-inner:hover,
+.row-outer:nth-child(even) .row-inner:hover {
+  @extend %grid-row-even-hover;
+}
+
+.row-outer:last-child,
+.row-outer:last-child .row-inner {
+  border-bottom: none;
+}
+
+.header-col,
+.col {
+  display: inline-block;
+  padding: 15px;
+  font-size: 14px;
+  width: 150px;
+  white-space: normal;
+}
+
+.header-col {
+  font-size: 16px;
+}
+
+.clearFix {
+  clear: both;
 }

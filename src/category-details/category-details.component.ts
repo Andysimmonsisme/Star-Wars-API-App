@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { DataService } from '../data/data.service';
 
 @Component({
@@ -29,6 +36,7 @@ export class CategoryDetailsComponent implements OnChanges {
   nextPage: string = null;
   @Input() activeCategory: string;
   @Input() mainFields: Array<string>;
+  @Output() sendCurrData = new EventEmitter<Array<Object>>();
 
   convertToTitleCase(val) {
     let frags = val.split('_');
@@ -48,6 +56,7 @@ export class CategoryDetailsComponent implements OnChanges {
       this.nextPage = data.nextPage;
       this.allData = data.results;
       console.log(this.allData);
+      this.sendCurrData.emit(data.results);
       this.populateCategoryDetails(data.results);
     });
   }
